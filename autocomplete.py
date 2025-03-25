@@ -27,7 +27,8 @@ CODE_SNIPPETS = {
 
 def complete(text, state):
     """Auto-complete function for user input."""
-    matches = get_close_matches(text, CODE_SNIPPETS.keys(), n=5, cutoff=0.4)
+    # Try to find any matches for partial input
+    matches = [key for key in CODE_SNIPPETS.keys() if key.startswith(text)]
     return matches[state] if state < len(matches) else None
 
 # Configure auto-completion
